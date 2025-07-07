@@ -34,14 +34,27 @@
       overflow: hidden;
       z-index: 10;
     }
-
+    .wheel-frame {
+      position: absolute;
+      width: 100%; /* Make the frame cover the entire wheel area */
+      height: 100%;
+      pointer-events: none; /* Allows clicks to pass through to elements beneath */
+      z-index: 20; /* Between wheel and arrow */
+      top: 0;
+      left: 0;
+      /* Use background-image for better control, or direct <img> */
+      background-image: url('outlinecircle.png');
+      background-size: contain; /* or cover, depending on how it should scale */
+      background-repeat: no-repeat;
+      background-position: center;
+  }
     .spinner-wheel {
       position: absolute;
       width: 100%;
       height: 100%;
       border-radius: 50%;
       transition: transform 4s ease-out;
-      background-image: url('01.wheel-05.png');
+      background-image: url('820_2.png');
       background-size: cover;
       background-position: center;
     }
@@ -53,6 +66,7 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 30;
+      background-image: url('01.wheel-10.png.png');
     }
 
     .segment {
@@ -103,6 +117,8 @@
   <div class="spinner-wrapper">
     <div class="spinner-container" id="spinnerContainer">
       <div class="spinner-wheel" id="spinnerWheel"></div>
+      <!-- <div class="spinner-arrow-img" alt="Spinner Arrow" id="spinner-arrow-img"></div> -->
+      <div class="wheel-frame"></div>
       <img src="01.wheel-10.png" alt="Spinner Arrow" class="spinner-arrow-img">
     </div>
   </div>
@@ -113,10 +129,10 @@
     const spinButton = document.getElementById('spinButton');
 
     const segmentsData = [
-      { name: "Chawan Mushi", image: "images/ChawanMushi.png" },
-      { name: "Tofu Steak", image: "images/TofuSteak.png" },
-      { name: "Shirataki Spicy Itame", image: "images/ShirakiSpicyItame.png" },
-      { name: "Tekka Maki", image: "images/TekkaMaki.png" }
+      { name: "Chawan Mushi", image: "images/ChawanMushi.png"},
+      { name: "Tofu Steak", image: "images/TofuSteak.png"},
+      { name: "Shirataki Spicy Itame", image: "images/ShirakiSpicyItame.png"},
+      { name: "Tekka Maki", image: "images/TekkaMaki.png"}
     ];
 
     const stopDegrees = [45, 135, 225, 315];
