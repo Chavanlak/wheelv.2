@@ -17,38 +17,68 @@
       overflow: hidden;
     }
 
-    .spinner-wrapper {
+    /*.spinner-wrapper {
       position: relative;
       width: 600px;
       height: 600px;
       display: flex;
       justify-content: center;
       align-items: center;
+    }*/
+    .spinner-wrapper {
+      position: relative;
+      width: 90vmin;
+      height: 90vmin;
+      max-width: 600px;
+      max-height: 600px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .spinner-container {
+    /*.spinner-container {
       position: relative;
       width: 450px;
       height: 450px;
       border-radius: 50%;
       overflow: hidden;
       z-index: 10;
-    }
-    .wheel-frame {
+    }*/
+    
+  /*.spinner-container {
+    position: relative;
+    width: 80vmin;
+    height: 80vmin;
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 10;
+  }*/
+  .spinner-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: visible; /* allow inner layers to show */
+    z-index: 10;
+  }
+   /* .wheel-frame {
       position: absolute;
-      width: 100%; /* Make the frame cover the entire wheel area */
+      width: 100%; 
       height: 100%;
-      pointer-events: none; /* Allows clicks to pass through to elements beneath */
-      z-index: 20; /* Between wheel and arrow */
+      pointer-events: none; 
+      z-index: 20; 
       top: 0;
       left: 0;
-      /* Use background-image for better control, or direct <img> */
-      background-image: url('outlinecircle.png');
-      background-size: contain; /* or cover, depending on how it should scale */
+      
+      background-image: url('famecir.png');
+      background-size: contain; 
       background-repeat: no-repeat;
       background-position: center;
-  }
-    .spinner-wheel {
+  }*/
+  
+    /*.spinner-wheel {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -57,9 +87,69 @@
       background-image: url('820_2.png');
       background-size: cover;
       background-position: center;
-    }
+    }*/
+    
+ /* .wheel-frame {
+    position: absolute;
+    width: 100vmin;
+    height: 100vmin;
+    max-width: 660px;
+    max-height: 660px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 15;
+    background-image: url('famecir.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }*/
+  .wheel-frame {
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('framefuji.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 8;
+  }
+ /* .spinner-wheel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 
-    .spinner-arrow-img {
+    border-radius: 50%;
+    transition: transform 4s ease-out;
+    background-image: url('820_2.png');
+    background-size: cover;
+    background-position: center;
+ 
+  }*/
+  .spinner-wheel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: transform 4s ease-out;
+    background-image: url('wheelinside.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 5;
+  }
+  .segments-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    z-index: 6;
+  }
+    /*.spinner-arrow-img {
       position: absolute;
       width: 80px;
       top: -10px;
@@ -67,8 +157,33 @@
       transform: translateX(-50%);
       z-index: 30;
       background-image: url('01.wheel-10.png.png');
+    }*/
+    /*.spinner-arrow-img {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 15vmin;
+      max-width: 80px;
+      z-index: 20;
+    }*/
+    .spinner-arrow-img {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      z-index: 20;
     }
-
+    /*.segment {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-origin: 100% 100%;
+    }*/
     .segment {
       position: absolute;
       width: 50%;
@@ -78,10 +193,10 @@
       align-items: center;
       transform-origin: 100% 100%;
     }
-
+  
     .segment img {
-      width: 80%;
-      height: 80%;
+      width: 60%;
+      height: 60%;
       object-fit: contain;
       transform: rotate(var(--rotation));
       transition: transform 4s ease-out;
@@ -89,8 +204,9 @@
     }
 
     .spin-button {
-      margin-top: 30px;
-      padding: 18px 35px;
+      margin-top: 80px;
+      /*padding: 18px 35px;*/
+      padding: 16px 32px;
       font-size: 22px;
       cursor: pointer;
       background-color: #051950;
@@ -111,45 +227,69 @@
       transform: translateY(0);
       box-shadow: 0 2px 3px rgba(0,0,0,0.1);
     }
+    @media (max-width: 500px) {
+      .spin-button {
+        font-size: 1rem;
+        padding: 14px 28px;
+      }
+  
+      .spinner-arrow-img {
+        top: -30px;
+        width: 50px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="spinner-wrapper">
+  <!-- <div class="spinner-wrapper">
+    <div class="wheel-frame"></div>
     <div class="spinner-container" id="spinnerContainer">
       <div class="spinner-wheel" id="spinnerWheel"></div>
-      <!-- <div class="spinner-arrow-img" alt="Spinner Arrow" id="spinner-arrow-img"></div> -->
-      <div class="wheel-frame"></div>
+      
+      <div class="segments-layer" id="segmentsLayer"></div>
       <img src="01.wheel-10.png" alt="Spinner Arrow" class="spinner-arrow-img">
     </div>
-  </div>
-  <button class="spin-button" id="spinButton">Spin!</button>
+  </div> -->
+  <div class="spinner-wrapper">
+    <div class="wheel-frame"></div> 
+    
+    <div class="spinner-container" id="spinnerContainer">
+      <div class="spinner-wheel" id="spinnerWheel">
+        <!-- รูปเมนูจะถูกเพิ่มที่นี่ผ่าน JS -->
+      </div>
+    </div>
 
+    <img src="01.wheel-10.png" alt="Spinner Arrow" class="spinner-arrow-img">
+  </div>
+
+  <button class="spin-button" id="spinButton">Spin!</button>
   <script>
-    const spinnerWheel = document.getElementById('spinnerWheel');
-    const spinButton = document.getElementById('spinButton');
+    const spinnerWheel = document.getElementById('spinnerWheel'); //วงล้อจะหมุนเเต่ละส่วน
+    const spinButton = document.getElementById('spinButton');//ปุ่มกดเพื่อหมุนวงลล้อ
 
     const segmentsData = [
       { name: "Chawan Mushi", image: "images/ChawanMushi.png"},
       { name: "Tofu Steak", image: "images/TofuSteak.png"},
       { name: "Shirataki Spicy Itame", image: "images/ShirakiSpicyItame.png"},
       { name: "Tekka Maki", image: "images/TekkaMaki.png"}
-    ];
+    ]; //อาเรย์ที่เก็บข้อมูล
 
-    const stopDegrees = [45, 135, 225, 315];
-    let currentRotation = 0;
+    const stopDegrees = [45, 135, 225, 315]; //มุมที่ใช้นการหยุดหมุนของวงล้อ
+    let currentRotation = 0; //เก็บองศาการหมุนเพื่อเก็บไว้หมุนในรอบต่อไป
 
-    function createSegments() {
+    //ฟังชั่นในการสร้างช่องของเเต่ละรูปเเต่ละช่อง
+    function createSegments() { 
       segmentsData.forEach((segment, index) => {
         const segmentDiv = document.createElement('div');
         segmentDiv.className = 'segment';
 
-        const angle = index * 90;
+        const angle = index * 90; //วงล้อมี 4 ช่องเเบ่งเป็น 90 องศาต่อช่อง 
         segmentDiv.style.transform = `rotate(${angle}deg) `;
 
         const img = document.createElement('img');
         img.src = segment.image;
         img.alt = segment.name;
-        img.style.setProperty('--rotation', `-${angle}deg `);
+        img.style.setProperty('--rotation', `-${angle}deg `); //--rotationหมุนรูปให้ตรงกับช่องที่หมุน
 
         segmentDiv.appendChild(img);
         spinnerWheel.appendChild(segmentDiv);
@@ -157,24 +297,25 @@
     }
 
     createSegments();
-
+    //เมื่อกดปุ่มspinหมุนวงล้อจะทำการหมุนไปยังมุมที่กำหนด
     spinButton.addEventListener('click', () => {
-      spinButton.disabled = true;
-      const randomIndex = Math.floor(Math.random() * stopDegrees.length);
-      const targetDegree = stopDegrees[randomIndex];
+      spinButton.disabled = true; //ปิดปุ่มเพื่อไม่ให้กดซ้ำขณะหมุน
+      const randomIndex = Math.floor(Math.random() * stopDegrees.length); //สุ่มเลือกมุมที่จะหยุดหมุน0-3
+      const targetDegree = stopDegrees[randomIndex]; //targetDegree คือมุมที่วงล้อจะหยุดหมุน
 
-      const rotationOffset = currentRotation % 360;
+      const rotationOffset = currentRotation % 360; // ค่าปัจจุบันของการหมุนที่เหลืออยู่
       const degreesToReachTarget = (targetDegree - rotationOffset + 360) % 360;
       const fullSpins = 5;
       const totalRotation = currentRotation + (fullSpins * 360) + degreesToReachTarget;
 
       spinnerWheel.style.transform = `rotate(${totalRotation}deg)`;
 
-      document.querySelectorAll('.segment img').forEach((img, index) => {
+      //หมุนรูปภาพกลับให้ตรง
+      document.querySelectorAll('.segment img').forEach((img, index) => { //รูปอาหารถูกหมุนทวนกลับเท่าที่วงล้อหมุนไป เพื่อให้ดูเหมือนภาพไม่หมุนตามวงล้อ
         const angle = index * 90;
         img.style.transform = `rotate(${-(angle + totalRotation)}deg) `;
       });
-
+      //เมื่อวงล้อหยุดหมุน(หมุนจบ)จะทำการแสดงข้อความ
       spinnerWheel.addEventListener('transitionend', () => {
         currentRotation = totalRotation;
         spinButton.disabled = false;
